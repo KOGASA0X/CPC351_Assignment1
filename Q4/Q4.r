@@ -1,6 +1,3 @@
-# 确保"Q4"子文件夹存在
-dir.create("Q4", showWarnings = FALSE)
-
 # 读取CSV文件
 data <- read.csv("tracks_features.csv")
 

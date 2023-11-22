@@ -26,8 +26,6 @@ total_distance <- sum(distances[tour[-length(tour)], tour[-1]])
 print(paste("The tour is:", paste(tour, collapse = " -> ")))
 print(paste("The total distance is:", total_distance))
 
-dir.create("Q4", showWarnings = FALSE)
-
 # Create a PNG graphics device
 png("Q3/output.png")
 

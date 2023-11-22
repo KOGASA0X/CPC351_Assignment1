@@ -1,16 +1,16 @@
 # Ensure that the "Q1" subfolder exists
-dir.create("Q1", showWarnings = FALSE)
+# dir.create("Q1", showWarnings = FALSE)
 
 # Set the working directory to the "Q1" subfolder
-setwd("Q1")
+# setwd("Q1")
 
 #read data from file
-CCS592 <- readLines("Q1_CCS592.txt")
-CDS501 <- readLines("Q1_CDS501.txt")
-CDS506 <- readLines("Q1_CDS506.txt")
-CDS512 <- readLines("Q1_CDS512.txt")
-CDS521 <- readLines("Q1_CDS521.txt")
-CDS523 <- readLines("Q1_CDS523.txt")
+CCS592 <- readLines("Q1/Q1_CCS592.txt")
+CDS501 <- readLines("Q1/Q1_CDS501.txt")
+CDS506 <- readLines("Q1/Q1_CDS506.txt")
+CDS512 <- readLines("Q1/Q1_CDS512.txt")
+CDS521 <- readLines("Q1/Q1_CDS521.txt")
+CDS523 <- readLines("Q1/Q1_CDS523.txt")
 
 #a
 num_student <- c( CCS592 = length(CCS592), CDS501 = length(CDS501), CDS506 = length(CDS506), CDS512 = length(CDS512), CDS521 = length(CDS521), CDS523 = length(CDS523) )

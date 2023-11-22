@@ -21,7 +21,7 @@ count_words <- function(text) {
 # Loop through all the text file
 for (i in 1:10) {
   # Read the content of the file
-  file_path <- paste("Q2_Part_", sprintf("%02d", i), ".txt", sep="")
+  file_path <- paste("Q2/Q2_Part_", sprintf("%02d", i), ".txt", sep="")
   file_content <- tolower(readLines(file_path, warn = FALSE))
   
   # Combine lines into a single string
@@ -30,6 +30,7 @@ for (i in 1:10) {
   # Count words in the text
   count_words(file_text)
 }
+
 #Print the word count of "analytics", "insight", "of" 
 cat("Total number count of 'analytics':", analytics_num, "\n")
 cat("Total number count of 'insight':", insight_num, "\n")
