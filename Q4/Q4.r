@@ -20,3 +20,18 @@ for (i in 1:num_files) {
     # Write to a new CSV file
     write.csv(subset, paste0("Q4/spotify_", i, ".csv"), row.names = FALSE)
 }
+
+# Initialize an empty list to store data frames
+data_frames <- list()
+
+# For each file
+for (i in 1:num_files) {
+    # Read the CSV file
+    data <- read.csv(paste0("Q4/spotify_", i, ".csv"))
+    
+    # Add the data frame to the list
+    data_frames[[i]] <- data
+}
+
+# Merge all the data frames into one data frame
+complete <- do.call(rbind, data_frames)
