@@ -33,5 +33,27 @@ for (i in 1:num_files) {
     data_frames[[i]] <- data
 }
 
-# Merge all the data frames into one data frame
-complete <- do.call(rbind, data_frames)
+# Initialize an empty list to store merged data frames
+merged_data_frames <- list()
+
+# For every 8 files
+for (i in seq(1, num_files, by = 8)) {
+    # Merge every 8 files into one data frame using the cbind() function
+    merged_data_frames[[i %/% 8 + 1]] <- do.call(cbind, data_frames[i:(i+7)])
+}
+
+# Merge all the data frames into one data frame using the rbind() function
+complete <- do.call(rbind, merged_data_frames)
+
+# Read CSV file
+data_csv <- read.csv("tracks_features.csv")
+
+# Convert all factor columns of the data frame to character columns
+complete[] <- lapply(complete, function(x) if(is.factor(x)) as.character(x) else x)
+data_csv[] <- lapply(data_csv, function(x) if(is.factor(x)) as.character(x) else x)
+
+# Compare the two data frames
+difference <- all.equal(complete, data_csv)
+
+# Print the differences
+print(difference)
