@@ -1,5 +1,9 @@
-#Q1
-setwd("C:/Users/stcfr/Desktop/Assignment01_Data")
+# Ensure that the "Q1" subfolder exists
+dir.create("Q1", showWarnings = FALSE)
+
+# Set the working directory to the "Q1" subfolder
+setwd("Q1")
+
 #read data from file
 CCS592 <- readLines("Q1_CCS592.txt")
 CDS501 <- readLines("Q1_CDS501.txt")
