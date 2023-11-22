@@ -27,7 +27,7 @@ print(paste("The tour is:", paste(tour, collapse = " -> ")))
 print(paste("The total distance is:", total_distance))
 
 # Create a PNG graphics device
-png("output.png")
+png("Q3/output.png")
 
 # Visualize the Hamiltonian circuit
 plot(unlist(lapply(points, function(x) x[1])), unlist(lapply(points, function(x) x[2])), type = "n", las = 2)
