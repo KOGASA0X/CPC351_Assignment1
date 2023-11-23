@@ -9,15 +9,31 @@ for (i in 1:length(points)) {
     }
 }
 
-# Use the Nearest Neighbor Algorithm to find the Hamiltonian circuit
-tour <- c(1)
-while (length(tour) < length(points)) {
-    last_point <- tour[length(tour)]
-    distances[last_point, tour] <- Inf
-    next_point <- which.min(distances[last_point, ])
-    tour <- c(tour, next_point)
+# Create a data frame to store the distances
+distances_df <- data.frame(distances)
+
+# Set the row names and column names of the data frame
+rownames(distances_df) <- paste("Point", 1:length(points))
+colnames(distances_df) <- paste("Point", 1:length(points))
+
+# Print the data frame
+print(distances_df)
+
+# Use the Sorted Edges Algorithm to find the Hamiltonian circuit
+edges <- which(lower.tri(distances), arr.ind = TRUE)
+edges <- cbind(edges, distances[edges])
+edges <- edges[order(edges[,3]),]
+tour <- c()
+for(i in 1:nrow(edges)) {
+    edge <- edges[i, 1:2]
+    if (!(edge[1] %in% tour && edge[2] %in% tour && length(unique(c(tour, edge))) < length(tour) + 1)) {
+        tour <- unique(c(tour, edge))
+    }
+    if (length(tour) == length(points)) {
+        break
+    }
 }
-tour <- c(tour, 1)
+tour <- c(tour, tour[1])
 
 # Calculate the total distance of the circuit
 total_distance <- sum(distances[tour[-length(tour)], tour[-1]])
