@@ -23,14 +23,72 @@ print(distances_df)
 edges <- which(lower.tri(distances), arr.ind = TRUE)
 edges <- cbind(edges, distances[edges])
 edges <- edges[order(edges[,3]),]
-tour <- c()
-for(i in 1:nrow(edges)) {
-    edge <- edges[i, 1:2]
-    if (!(edge[1] %in% tour && edge[2] %in% tour && length(unique(c(tour, edge))) < length(tour) + 1)) {
-        tour <- unique(c(tour, edge))
-    }
-    if (length(tour) == length(points)) {
-        break
+
+# Initialize tour
+tour <- c(edges[1, 1:2])
+
+# Initialize the head and tail of tour
+head <- tour[1]
+tail <- tour[2]
+
+print(edges)
+print(tour)
+print(head)
+print(tail)
+
+# Initialize a variable to track if tour is updated in the loop
+updated <- TRUE
+
+while (updated) {
+    # Assume tour won't be updated at the beginning of each loop
+    updated <- FALSE
+    
+    for(i in 1:nrow(edges)) {
+        edge <- edges[i, 1:2]
+        
+        # If the value in the first column of edge equals the head of tour and the value in the second column is not in tour
+        if (edge[1] == head && !(edge[2] %in% tour)) {
+            # Insert the value in the second column of edge at the head of tour
+            tour <- c(edge[2], tour)
+            # Update the head of tour
+            head <- edge[2]
+            # Mark that tour has been updated
+            updated <- TRUE
+            break
+        }
+        
+        # If the value in the second column of edge equals the head of tour and the value in the first column is not in tour
+        if (edge[2] == head && !(edge[1] %in% tour)) {
+            # Insert the value in the first column of edge at the head of tour
+            tour <- c(edge[1], tour)
+            # Update the head of tour
+            head <- edge[1]
+            # Mark that tour has been updated
+            updated <- TRUE
+            break
+        }
+        
+        # If the value in the first column of edge equals the tail of tour and the value in the second column is not in tour
+        if (edge[1] == tail && !(edge[2] %in% tour)) {
+            # Insert the value in the second column of edge at the tail of tour
+            tour <- c(tour, edge[2])
+            # Update the tail of tour
+            tail <- edge[2]
+            # Mark that tour has been updated
+            updated <- TRUE
+            break
+        }
+        
+        # If the value in the second column of edge equals the tail of tour and the value in the first column is not in tour
+        if (edge[2] == tail && !(edge[1] %in% tour)) {
+            # Insert the value in the first column of edge at the tail of tour
+            tour <- c(tour, edge[1])
+            # Update the tail of tour
+            tail <- edge[1]
+            # Mark that tour has been updated
+            updated <- TRUE
+            break
+        }
     }
 }
 tour <- c(tour, tour[1])
