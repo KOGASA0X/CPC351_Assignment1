@@ -46,7 +46,7 @@ print(paste("The total distance is:", total_distance))
 png("Q3/output.png")
 
 # Visualize the Hamiltonian circuit
-plot(unlist(lapply(points, function(x) x[1])), unlist(lapply(points, function(x) x[2])), type = "n", las = 2)
+plot(unlist(lapply(points, function(x) x[1])), unlist(lapply(points, function(x) x[2])), type = "n", las = 2, xlim = c(min(unlist(lapply(points, function(x) x[1]))) - 20, max(unlist(lapply(points, function(x) x[1]))) + 20))
 
 # Mark the points with black dots
 points(unlist(lapply(points, function(x) x[1])), unlist(lapply(points, function(x) x[2])), pch = 19, col = "black")
