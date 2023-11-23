@@ -88,8 +88,17 @@ while (updated) {
 }
 tour <- c(tour, tour[1])
 
-# Calculate the total distance of the circuit
-total_distance <- sum(distances[tour[-length(tour)], tour[-1]])
+# Initialize the total distance to 0
+total_distance <- 0
+
+# Iterate through each point in the traveler's path
+for (i in 1:(length(tour) - 1)) {
+    # Calculate the distance between the current point and the next point
+    distance <- distances[tour[i], tour[i + 1]]
+    
+    # Add the current distance to the total distance
+    total_distance <- total_distance + distance
+}
 
 # Output the results
 print(paste("The tour is:", paste(tour, collapse = " -> ")))
