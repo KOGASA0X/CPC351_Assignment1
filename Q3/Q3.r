@@ -31,11 +31,6 @@ tour <- c(edges[1, 1:2])
 head <- tour[1]
 tail <- tour[2]
 
-print(edges)
-print(tour)
-print(head)
-print(tail)
-
 # Initialize a variable to track if tour is updated in the loop
 updated <- TRUE
 
