@@ -47,7 +47,14 @@ png("Q3/output.png")
 
 # Visualize the Hamiltonian circuit
 plot(unlist(lapply(points, function(x) x[1])), unlist(lapply(points, function(x) x[2])), type = "n", las = 2)
-text(unlist(lapply(points, function(x) x[1])), unlist(lapply(points, function(x) x[2])), labels = 1:length(points), cex = 0.7)
+
+# Mark the points with black dots
+points(unlist(lapply(points, function(x) x[1])), unlist(lapply(points, function(x) x[2])), pch = 19, col = "black")
+
+# Add the point numbers next to the points
+text(unlist(lapply(points, function(x) x[1])) + 10, unlist(lapply(points, function(x) x[2])), labels = 1:length(points), cex = 1)
+
+# Draw the lines between the points
 lines(unlist(lapply(points[tour], function(x) x[1])), unlist(lapply(points[tour], function(x) x[2])))
 
 # Close the graphics device and save the image
